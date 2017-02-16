@@ -55,9 +55,23 @@ results.addEventListener('click', function(e) {
         }
     }
 });
+
+var autoComplete = function(toggle){
+    var searchBox = $("#search-box");
+    var input = searchBox.attr("autocomplete", toggle);
+    searchBox.append($(input));
+};
+
 $("#search-box").on("keyup", function() {
     var g = $(this).val().toLowerCase();
     searchAlbums(g);
+    autoComplete("on");
 });
-// searchAlbums('Demoscene Time Machine');
+
+document.getElementById('form-search-box').addEventListener('submit', function (e) {
+    e.preventDefault();
+    autoComplete("off");
+}, false);
 });
+
+
